@@ -11,6 +11,7 @@ return {
       [";"] = { "<cmd>Dashboard<cr>", "Dashboard" },
       ["c"] = { "<cmd>bd<cr>", "Close Buffer" },
       ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+      ["t"] = { "<cmd>ToggleTerm<cr>", "Terminal" },
       ["l"] = {
         name = "LSP",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -23,6 +24,12 @@ return {
       ["p"] = {
         name = "Plugins",
         d = { "<cmd>Lazy<cr>", "Dashboard" },
+      },
+      ["s"] = {
+        name = "Search",
+        f = { "<cmd>Telescope find_files<cr>", "Find files" },
+        t = { "<cmd>Telescope live_grep<cr>", "Find text" },
+        T = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
       },
       ["Q"] = { "<cmd>q!<cr>", "Quit (force)" },
       ["q"] = { "<cmd>q<cr>", "Quit" },
