@@ -29,6 +29,16 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufWinEnter" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client.supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(ev.buf, true)
+    end
+
+    vim.diagnostic.config({
+      underline = true,
+      severity_sort = true,
+    })
+
     local opts = { buffer = ev.buf }
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -36,8 +46,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   end,
 })
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    severity_sort = { reverse = false },
-  })
