@@ -5,9 +5,6 @@ return {
   config = function()
     require("lualine").setup({
       options = {
-        disabled_filetypes = {
-          statusline = { "alpha" },
-        },
         globalstatus = true,
         theme = "catppuccin",
       },

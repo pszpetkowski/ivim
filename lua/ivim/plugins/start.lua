@@ -1,45 +1,56 @@
 return {
-  "goolord/alpha-nvim",
-  config = function()
-    local dashboard = require("alpha.themes.dashboard")
-    dashboard.section.header.val = {
-      [[                                                                     ]],
-      [[  iiii  VVVVVVVV           VVVVVVVV  iiii                            ]],
-      [[ i::::i V::::::V           V::::::V i::::i                           ]],
-      [[  iiii  V::::::V           V::::::V  iiii                            ]],
-      [[        V::::::V           V::::::V                                  ]],
-      [[ iiiiiii  V:::::V           V:::::V iiiiiii    mmmmmmm    mmmmmmm    ]],
-      [[ i:::::i   V:::::V         V:::::V  i:::::i  mm:::::::m  m:::::::mm  ]],
-      [[  i::::i    V:::::V       V:::::V    i::::i m::::::::::mm::::::::::m ]],
-      [[  i::::i     V:::::V     V:::::V     i::::i m::::::::::::::::::::::m ]],
-      [[  i::::i      V:::::V   V:::::V      i::::i m:::::mmm::::::mmm:::::m ]],
-      [[  i::::i       V:::::V V:::::V       i::::i m::::m   m::::m   m::::m ]],
-      [[  i::::i        V:::::V:::::V        i::::i m::::m   m::::m   m::::m ]],
-      [[  i::::i         V:::::::::V         i::::i m::::m   m::::m   m::::m ]],
-      [[ i::::::i         V:::::::V         i::::::im::::m   m::::m   m::::m ]],
-      [[ i::::::i          V:::::V          i::::::im::::m   m::::m   m::::m ]],
-      [[ i::::::i           V:::V           i::::::im::::m   m::::m   m::::m ]],
-      [[ iiiiiiii            VVV            iiiiiiiimmmmmm   mmmmmm   mmmmmm ]],
+  "nvimdev/dashboard-nvim",
+  event = "VimEnter",
+  opts = function()
+    local header = [[
+       iiii  VVVVVVVV           VVVVVVVV  iiii                           
+      i::::i V::::::V           V::::::V i::::i                          
+       iiii  V::::::V           V::::::V  iiii                           
+             V::::::V           V::::::V                                 
+      iiiiiii  V:::::V           V:::::V iiiiiii    mmmmmmm    mmmmmmm   
+      i:::::i   V:::::V         V:::::V  i:::::i  mm:::::::m  m:::::::mm 
+       i::::i    V:::::V       V:::::V    i::::i m::::::::::mm::::::::::m
+       i::::i     V:::::V     V:::::V     i::::i m::::::::::::::::::::::m
+       i::::i      V:::::V   V:::::V      i::::i m:::::mmm::::::mmm:::::m
+       i::::i       V:::::V V:::::V       i::::i m::::m   m::::m   m::::m
+       i::::i        V:::::V:::::V        i::::i m::::m   m::::m   m::::m
+       i::::i         V:::::::::V         i::::i m::::m   m::::m   m::::m
+      i::::::i         V:::::::V         i::::::im::::m   m::::m   m::::m
+      i::::::i          V:::::V          i::::::im::::m   m::::m   m::::m
+      i::::::i           V:::V           i::::::im::::m   m::::m   m::::m
+      iiiiiiii            VVV            iiiiiiiimmmmmm   mmmmmm   mmmmmm
+    ]]
+    header = "\n\n" .. header .. "\n\n"
+
+    local opts = {
+      theme = "doom",
+      hide = {
+        tabline = false,
+      },
+      config = {
+        header = vim.split(header, "\n"),
+        center = {
+          {
+            action = "Telescope live_grep",
+            desc = " Find text",
+            icon = " ",
+            key = "t",
+          },
+          {
+            action = "Telescope find_files",
+            desc = " Find file",
+            icon = " ",
+            key = "f",
+          },
+          { action = "ene", desc = " New file", icon = " ", key = "n" },
+          { action = "qa", desc = " Quit", icon = " ", key = "q" },
+        },
+        footer = function()
+          return { "¯\\_(ツ)_/¯" }
+        end,
+      },
     }
 
-    dashboard.section.buttons.val = {
-      dashboard.button("t", "Find text", "<cmd>Telescope live_grep<cr>"),
-      dashboard.button("f", "Find file", "<cmd>Telescope find_files<cr>"),
-      dashboard.button("n", "New file", "<cmd>ene<cr>"),
-      dashboard.button("q", "Quit", "<cmd>q<cr>"),
-    }
-    _Gopts = {
-      position = "center",
-      hl = "Type",
-    }
-
-    local function footer()
-      return "¯\\_(ツ)_/¯"
-    end
-
-    dashboard.section.footer.val = footer()
-
-    dashboard.opts.opts.noautocmd = true
-    require("alpha").setup(dashboard.opts)
+    return opts
   end,
 }

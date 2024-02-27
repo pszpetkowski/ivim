@@ -8,7 +8,7 @@ return {
   config = function()
     local wk = require("which-key")
     wk.register({
-      [";"] = { "<cmd>Alpha<cr>", "Alpha" },
+      [";"] = { "<cmd>Dashboard<cr>", "Dashboard" },
       ["c"] = { "<cmd>bd<cr>", "Close Buffer" },
       ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
       ["l"] = {
