@@ -15,6 +15,9 @@ vim.opt.numberwidth = 2
 vim.opt.ruler = false
 vim.opt.cursorline = true
 
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+
 vim.g.mapleader = " "
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufWinEnter" }, {
