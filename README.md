@@ -29,10 +29,10 @@
    ```bash
    mkdir -p ~/.local/bin
    cat <<'EOF' > ~/.local/bin/ivim
-#!/bin/sh
-export NVIM_APPNAME="${NVIM_APPNAME:-"ivim"}"
-exec -a "$NVIM_APPNAME" nvim "$@"
-EOF
+   #!/bin/sh
+   export NVIM_APPNAME="${NVIM_APPNAME:-"ivim"}"
+   exec -a "$NVIM_APPNAME" nvim "$@"
+   EOF
    chmod u+x ~/.local/bin/ivim
    ```
 
